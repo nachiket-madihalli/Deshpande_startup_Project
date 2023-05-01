@@ -1,0 +1,41 @@
+
+<%- include("header") -%>
+
+  <nav class="header">
+  </nav>
+  <div class="nav">
+    <form  action="/logout" method="post">
+    <button class="appointment" type="button" name="button"> Log out</button>
+  </form>
+    <form  action="/user" method="post">
+      <button class="appointment" type="submit" name="button">Dashboard</button>
+    </form>
+    <form  action="/userAppointment" method="post">
+      <button class="appointment" type="submit" name="button">Appointment</button>
+    </form>
+  </div>
+
+  <p class="owner" style="color:green; font-size:40px;text-align:center">You have successfully logged in please check your dashboard</p>
+
+    <script type="text/javascript">
+      var today = document.getElementById("Today");
+      var time = document.getElementById("Time");
+      var greet = document.getElementById("greet");
+      let greeting;
+        var date = new Date();
+        today.innerText = date.toLocaleDateString(undefined,{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      if(new Date().getHours() > 16){
+        greeting="Good evening";
+        console.log(greeting);
+      }
+      else if(new Date().getHours() > 11){
+        greeting="Good afternoon";
+      }
+      else {
+        greeting="Good morning";
+      }
+
+      greet.innerText=greeting;
+    </script>
+
+      <%- include("footer") -%>

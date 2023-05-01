@@ -1,0 +1,90 @@
+
+<%- include("header") -%>
+
+  <nav class="header">
+  </nav>
+  <div class="nav">
+    <form  action="/" method="post">
+    <button class="appointment" type="button" name="button"> Log out</button>
+  </form>
+    <form  action="/userAppointment" method="post">
+      <button class="appointment" type="submit" name="button">Appointment</button>
+    </form>
+  </div>
+
+
+  <p id="greet">/p>
+  <p id="Today"></p>
+  <!-- 3 -->
+
+  <p class="owner">Welcome</p>
+  <p class="owner">You are are logged in with your email </p>
+
+  <table class="table">
+    <tr>
+      <th>Id</th><th>name</th><th>species</th><th>Breed</th><th>DOB</th><th>address</th><th>remove</th>
+    </tr>
+    <% newListItems.forEach(function(pet){ %>
+      <!-- 4 -->
+    <form action="/delete" method="post">
+    <tr>
+      <td>
+        <%=pet.mypet._id%>
+      </td>
+      <td>
+        <p><%=pet.mypet.name%></p>
+      </td>
+      <td>
+        <p><%=pet.mypet.species%></p>
+      </td>
+      <td>
+        <p><%=pet.mypet.breed%></p>
+      </td>
+      <td>
+        <p><%=pet.mypet.dob%></p>
+      </td>
+      <td>
+        <p><%=pet.mypet.address%></p>
+      </td>
+      <td>
+        <input type="checkbox" name="checkbox" value="<%=pet._id%>" onChange="this.form.submit()">
+      </td>
+    </tr>
+  </form>
+    <% }) %>
+  </table>
+  <form class="item" action="/user" method="post">
+    <table>
+      <tr>
+        <input class="input" type="text" name="newName" placeholder="Enter pet Name" autocomplete="off">
+        <input class="input" type="text" name="newSpecies" placeholder="Enter pet Species" autocomplete="off">
+        <input class="input" type="text" name="newBreed" placeholder="Enter pet Breed" autocomplete="off">
+        <input class="input" type="date" name="newDob" placeholder="Enter DOB" autocomplete="off">
+        <input class="input" type="text" name="newAddress" placeholder="Enter pet Address" autocomplete="off">
+        <button class="" type="submit" name="pet" style="border-radius:10px;width:40px"><p>+</p></button>
+    </tr>
+    </table>
+      </form>
+
+    <script type="text/javascript">
+      var today = document.getElementById("Today");
+      var time = document.getElementById("Time");
+      var greet = document.getElementById("greet");
+      let greeting;
+        var date = new Date();
+        today.innerText = date.toLocaleDateString(undefined,{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      if(new Date().getHours() > 16){
+        greeting="Good evening";
+        console.log(greeting);
+      }
+      else if(new Date().getHours() > 11){
+        greeting="Good afternoon";
+      }
+      else {
+        greeting="Good morning";
+      }
+
+      greet.innerText=greeting;
+    </script>
+
+      <%- include("footer") -%>

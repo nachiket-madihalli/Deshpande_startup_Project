@@ -1,0 +1,47 @@
+  <%- include("header") -%>
+  <nav class="header">
+  </nav>
+  <div class="nav">
+    <button class="appointment" type="button" name="button">
+      Log out
+    </button>
+    <form  action="/vet" method="post">
+      <button class="appointment" type="submit" name="button">Dashboard</button>
+    </form>
+  </div>
+<table class="table vetTable">
+  <tr>
+    <th colspan="7">Current appointments</th>
+  </tr>
+  <tr>
+    <th>id</th><th>name</th><th>species</th><th>Disease</th><th>time</th><th>delete</th>
+  </tr>
+  <%  newAppointments.forEach(function(appointment){ %>
+    <%console.log(appointment);%>
+  <form action="/vetDelete" method="post">
+  <tr>
+   <td>
+      <p><%=appointment.petID %></p>
+    </td>
+    <td>
+      <p><%=appointment.petName%></p>
+    </td>
+    <td>
+      <p><%=appointment.petSpecies%></p>
+    </td>
+    <td>
+      <p><%=appointment.petDisease%></p>
+    </td>
+    <td>
+      <p><%=appointment.appTime.time%></p>
+    </td>
+    <td>
+      <input type="checkbox" name="checkbox" value="<%=appointment._id%>" onChange="this.form.submit()">
+    </td>
+  </tr>
+</form>
+  <% }) %>
+</table>
+
+
+  <%- include("footer") -%>

@@ -1,0 +1,74 @@
+
+<%- include("header") -%>
+
+
+  <nav class="header">
+  </nav>
+  <div class="nav">
+    <button class="appointment" type="button" name="button">
+      Log out
+    </button>
+    <form  action="/vetAppointment" method="post">
+      <button class="appointment" type="submit" name="button">appointment</button>
+    </form>
+  </div>
+  <p id="greet"></p>
+  <p id="Today"></p>
+
+
+  <p class="owner">Welcome Dr Jason</p>
+  <p class="owner">You are are logged in with drjason@gmail.com</p>
+<table class="table" >
+<th colspan="2">Appointment TimeSlots</th>
+<%  newListItems.forEach(function(vet){ %>
+<form action="/appointmentDelete" method="post">
+<tr>
+  <td>
+    <input type="checkbox" name="checkbox" value="<%=vet._id%>" onChange="this.form.submit()">
+  </td>
+  <td>
+    <p><%=vet.timeSlot.time%> </p>
+    <%console.log(vet.timeSlot._id);%>
+  </td>
+</tr>
+</form>
+<% }) %>
+</table>
+  <form class="item" action="/vet" method="post">
+    <table>
+      <tr>
+        <input type="datetime-local" class="input" name="newTime" placeholder="Enter DOB" autocomplete="off">
+        <button type="submit" name="pet" style="border-radius:10px;width:40px">+</button>
+    </tr>
+    <tr><br><br>
+    <p style="font-weight:600">Please schedule the appointments here<p>
+    </tr>
+    </table>
+      </form>
+
+
+
+    <script>
+      var today = document.getElementById("Today");
+      var time = document.getElementById("Time");
+      var greet = document.getElementById("greet");
+      let greeting;
+
+
+        var date = new Date();
+        today.innerText = date.toLocaleDateString(undefined,{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      if(new Date().getHours() > 16){
+        greeting="Good evening Doctor";
+        console.log(greeting);
+      }
+      else if(new Date().getHours() > 11){
+        greeting="Good afternoon Doctor";
+      }
+      else {
+        greeting="Good morning Doctor";
+      }
+
+      greet.innerText=greeting;
+    </script>
+
+      <%- include("footer") -%>

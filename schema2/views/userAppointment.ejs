@@ -1,0 +1,54 @@
+<%- include("header") -%>
+
+ <!-- owner -->
+ <nav class="header">
+ </nav>
+ <div class="nav">
+   <form  action="/" method="post">
+   <button class="appointment" type="button" name="button"> Log out</button>
+ </form>
+   <form  action="/user" method="post">
+     <button class="appointment" type="submit" name="button">Dashboard</button>
+   </form>
+ </div>
+ <br><br><br>
+ <h2 style="text-align:center">Doctor Appointment booking</h2><br><br><br>
+  <form class="" action="/userAppointment" method="post">
+    <div class="row">
+      <div class="">
+        <label>Name</label>
+        <input type="text" name="petName" value="">
+      </div>
+      <div class="">
+        <label>ID</label>
+        <input type="text" name="petId" value=""></div>
+    </div>
+    <div class="row">
+      <div class="">
+        <label>species</label>
+        <input type="text" name="petSpecies" value=""></div>
+      <div class="">
+        <label>Disease</label>
+        <input type="text" name="petDisease" value=""></div>
+      </div>
+
+    <table class="table">
+      <tr>
+        <th colspan="2">Appointment times</th>
+      </tr>
+    <%  newAppointments.forEach(function(appointment){ %>
+      <tr>
+      <td>
+  <input type="radio" name="appoint" id="<%=appointment.time%> " value="<%=appointment.time%>">
+  <input type="hidden" name="id" value="<%=appointment._id%>">
+  <%console.log(appointment._id);%>
+  </td>
+  <td>
+    <label for="<%=appointment.time%> "> <p> <%= appointment.time%> </p></label>
+</td>
+</tr>
+  <% }) %>
+</table><br><br>
+  <button type="submit" name="button" class="submit" >submit</button>
+</form>
+  <%- include("footer") -%>
